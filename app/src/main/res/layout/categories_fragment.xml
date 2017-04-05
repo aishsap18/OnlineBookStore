@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:background="@color/colorBase"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/xSearchEditText"
+            android:ems="8"
+            android:textSize="25dp"
+            android:hint="Ex. The Secret"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/xSearchEditText"
+            android:layout_toEndOf="@+id/xSearchEditText"
+            android:id="@+id/xSearchButton"
+            android:text="Search"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_background"/>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xSearchEditText">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ART"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:id="@+id/xCategoryName"
+        />
+    <HorizontalScrollView
+        android:layout_below="@+id/xCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/title_horizontalScrollView"
+        android:layout_margin="1dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <GridView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/xCategoryGridView"
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:clickable="true"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FICTION"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/xCategoryName2"
+        android:layout_below="@+id/title_horizontalScrollView"
+        />
+    <HorizontalScrollView
+        android:layout_below="@+id/xCategoryName2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/title_horizontalScrollView2"
+        android:layout_margin="1dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <GridView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/xCategoryGridView2"
+                android:layout_gravity="center"
+                android:focusable="true"
+                android:clickable="true"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HISTORY"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/xCategoryName3"
+        android:layout_below="@+id/title_horizontalScrollView2"
+        />
+    <HorizontalScrollView
+        android:layout_below="@+id/xCategoryName3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/title_horizontalScrollView3"
+        android:layout_margin="1dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <GridView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/xCategoryGridView3"
+                android:layout_gravity="center"
+                android:focusable="true"
+                android:clickable="true"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HOW IT WORKS"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/xCategoryName4"
+        android:layout_below="@+id/title_horizontalScrollView3"
+        />
+    <HorizontalScrollView
+        android:layout_below="@+id/xCategoryName4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/title_horizontalScrollView4"
+        android:layout_margin="1dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <GridView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/xCategoryGridView4"
+                android:layout_gravity="center"
+                android:focusable="true"
+                android:clickable="true"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OTHER"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/xCategoryName5"
+        android:layout_below="@+id/title_horizontalScrollView4"
+        />
+    <HorizontalScrollView
+        android:layout_below="@+id/xCategoryName5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/title_horizontalScrollView5"
+        android:layout_margin="1dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <GridView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/xCategoryGridView5"
+                android:layout_gravity="center"
+                android:focusable="true"
+                android:clickable="true"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</FrameLayout>

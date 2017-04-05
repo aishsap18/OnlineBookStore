@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">OnlineBookStore</string>
+    <string name="title_activity_user_home">UserHomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="categoryIconName">
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Biology</item>
+        <item>Electricity</item>
+        <item>Geography</item>
+        <item>Science</item>
+    </string-array>
+
+</resources>
