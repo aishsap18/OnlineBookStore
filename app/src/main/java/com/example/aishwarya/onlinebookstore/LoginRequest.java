@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest {
     // login url
-    private static final String LOGIN_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/androidLogin.php";
+    private static final String LOGIN_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/androidLogin.php";
     private Map<String,String> params;
 
     public LoginRequest(String username, String password, Response.Listener<String> listener){

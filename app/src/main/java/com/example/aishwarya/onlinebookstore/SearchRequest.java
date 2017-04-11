@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class SearchRequest extends StringRequest {
     // login url
-    private static final String LOGIN_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/search.php";
+    private static final String LOGIN_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/search.php";
     private Map<String,String> params;
 
     public SearchRequest(String key, Response.Listener<String> listener){

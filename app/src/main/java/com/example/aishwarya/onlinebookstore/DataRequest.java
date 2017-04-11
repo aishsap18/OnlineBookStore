@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class DataRequest extends StringRequest {
     // login url
-    private static final String DATA_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/data.php";
+    private static final String DATA_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/data.php";
     private Map<String,String> params;
 
     public DataRequest(Response.Listener<String> listener){

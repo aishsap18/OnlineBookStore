@@ -1,5 +1,6 @@
 package com.example.aishwarya.onlinebookstore;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username,password;
     Button login,register;
+    public static ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         login.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
+                pd = ProgressDialog.show(MainActivity.this, "Please wait...", "Loggin in...", false, false);
                 final String etpassword = password.getText().toString();
                 final String etusername = username.getText().toString();
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -57,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
                             boolean success = jsonResponse.getBoolean("success");
                             int userid = jsonResponse.getInt("user_id");
-
+                            if (pd.isShowing()) {
+                                pd.dismiss();
+                                pd = null;
+                            }
                             if (success) {
                                 Intent intent = new Intent(MainActivity.this,UserHomeActivity.class);
                                 intent.putExtra("userid",userid);

@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ConfirmOrderRequest extends StringRequest {
     // login url
-    private static final String LOGIN_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/confirmorder.php";
+    private static final String LOGIN_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/confirmorder.php";
     private Map<String,String> params;
 
     public ConfirmOrderRequest(String userid, Response.Listener<String> listener){

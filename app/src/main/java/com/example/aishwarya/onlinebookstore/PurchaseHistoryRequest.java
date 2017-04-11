@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class PurchaseHistoryRequest extends StringRequest {
     // login url
-    private static final String VIEW_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/purchasedbooks.php";
+    private static final String VIEW_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/purchasedbooks.php";
     private Map<String,String> params;
 
     public PurchaseHistoryRequest(String userid, Response.Listener<String> listener){

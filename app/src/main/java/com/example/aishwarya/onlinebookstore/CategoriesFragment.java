@@ -1,18 +1,13 @@
 package com.example.aishwarya.onlinebookstore;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -27,22 +22,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -64,6 +51,7 @@ public class CategoriesFragment extends Fragment {
     public static final String TAG_description = "description";
     public static final String TAG_bookImagePath = "book_image_path";
     public static String key;
+    public static ProgressDialog pd;
     EditText searchet;
     Button searchbtn;
 
@@ -83,22 +71,24 @@ public class CategoriesFragment extends Fragment {
         searchbtn=(Button)mainView.findViewById(R.id.xSearchButton);
 
         //Toast.makeText(getActivity(), UserHomeActivity.userid+"", Toast.LENGTH_SHORT).show();
-
+        pd = ProgressDialog.show(getActivity(), "Please wait...", "Fetching data...", false, false);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
+                JSONArray eventsArray = null;
+                JSONObject jsonObject = null;
+
+                if (pd.isShowing()) {
+                    pd.dismiss();
+                    pd = null;
+                }
                 try {
                     //Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
-
-                    JSONArray eventsArray = null;
-                    JSONObject jsonObject = null;
-
                     jsonObject = new JSONObject(response);
                     eventsArray = jsonObject.getJSONArray(JSON_ARRAY);
-
                     //For category = Art
                     final ArrayList<DataCategoryWise> art = new ArrayList<>();
-
                     //For category = Fiction
                     final ArrayList<DataCategoryWise> fiction = new ArrayList<>();
 
@@ -329,6 +319,8 @@ public class CategoriesFragment extends Fragment {
                             fm.beginTransaction().replace(R.id.xUserFrame,new ViewBookFragment()).addToBackStack(null).commit();
                         }
                     });
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

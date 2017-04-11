@@ -36,6 +36,10 @@ public class PurchaseHistoryFragment extends Fragment {
     ArrayList<String> bookName,bookId,bookPath;
     public static String path;
 
+    public static String getTAG_bookPath() {
+        return TAG_bookPath;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,5 +101,7 @@ public class PurchaseHistoryFragment extends Fragment {
         queue.add(purchaseHistoryRequest);
 
         return mainView;
+
     }
+
 }

@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ViewCartRequest extends StringRequest {
     // login url
-    private static final String VIEW_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/cart.php";
+    private static final String VIEW_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/cart.php";
     private Map<String,String> params;
 
     public ViewCartRequest(String userid, Response.Listener<String> listener){

@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class RemoveBookRequest extends StringRequest {
     // login url
-    private static final String LOGIN_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/remove.php";
+    private static final String LOGIN_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/remove.php";
     private Map<String,String> params;
 
     public RemoveBookRequest(String cartid, Response.Listener<String> listener){

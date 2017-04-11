@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class AddToCartRequest extends StringRequest {
     // login url
-    private static final String LOGIN_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/addtocart.php";
+    private static final String LOGIN_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/addtocart.php";
     private Map<String,String> params;
 
     public AddToCartRequest(String userid, String bookid, Response.Listener<String> listener){

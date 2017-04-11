@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
     // login url
-    private static final String LOGIN_REQUEST_URL = "http://10.0.2.2:8081/OnlineBookStore/androidRegister.php";
+    private static final String LOGIN_REQUEST_URL = "http://lambelltech.com/OnlineBookStore/androidRegister.php";
     private Map<String,String> params;
 
     public RegisterRequest(String fullname, String username, String password, Response.Listener<String> listener){
