@@ -48,7 +48,6 @@ public class CartViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mainView = inflater.inflate(R.layout.view_cart_fragment, container, false);
-        UserHomeActivity.title.setText("CART");
 
         cartList=(ListView)mainView.findViewById(R.id.xCartListView);
         total=(TextView)mainView.findViewById(R.id.xTotal);

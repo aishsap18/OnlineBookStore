@@ -16,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class UserHomeActivity extends AppCompatActivity
+public class AdminHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static TextView title;
@@ -26,7 +26,7 @@ public class UserHomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_home);
+        setContentView(R.layout.activity_admin_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,7 +44,7 @@ public class UserHomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.xUserFrame, new CategoriesFragment()).addToBackStack(null).commit();
+        fm.beginTransaction().replace(R.id.xUserFrame, new AdminCategoriesFragment()).addToBackStack(null).commit();
     }
 
     @Override
@@ -62,18 +62,14 @@ public class UserHomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         FragmentManager fm = getSupportFragmentManager();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
-            fm.beginTransaction().replace(R.id.xUserFrame,new CategoriesFragment()).addToBackStack(null).commit();
-        } else if (id == R.id.action_cart) {
-            fm.beginTransaction().replace(R.id.xUserFrame,new CartViewFragment()).addToBackStack(null).commit();
-        } else if (id == R.id.action_purchased){
-            fm.beginTransaction().replace(R.id.xUserFrame,new PurchaseHistoryFragment()).addToBackStack(null).commit();
-        } else if (id == R.id.action_logout){
-            Intent intent = new Intent(UserHomeActivity.this,MainActivity.class);
-            UserHomeActivity.this.startActivity(intent);
+            fm.beginTransaction().replace(R.id.xUserFrame,new AdminCategoriesFragment()).addToBackStack(null).commit();
+        } else if (id == R.id.action_add_book) {
+            fm.beginTransaction().replace(R.id.xUserFrame,new AdminAddBookFragment()).addToBackStack(null).commit();
+        } else if (id == R.id.action_logout) {
+            Intent intent = new Intent(AdminHomeActivity.this,MainActivity.class);
+            AdminHomeActivity.this.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

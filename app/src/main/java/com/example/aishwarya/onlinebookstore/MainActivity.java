@@ -60,16 +60,25 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
 
                             boolean success = jsonResponse.getBoolean("success");
-                            int userid = jsonResponse.getInt("user_id");
+
                             if (pd.isShowing()) {
                                 pd.dismiss();
                                 pd = null;
                             }
                             if (success) {
-                                Intent intent = new Intent(MainActivity.this,UserHomeActivity.class);
-                                intent.putExtra("userid",userid);
-                                MainActivity.this.startActivity(intent);
-                                //Toast.makeText(MainActivity.this, userid+"", Toast.LENGTH_SHORT).show();
+                                int userid = jsonResponse.getInt("user_id");
+                                String role = jsonResponse.getString("role");
+                                if(role.equalsIgnoreCase("user")) {
+                                    Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
+                                    intent.putExtra("userid", userid);
+                                    MainActivity.this.startActivity(intent);
+                                    //Toast.makeText(MainActivity.this, userid+"", Toast.LENGTH_SHORT).show();
+                                } else if(role.equalsIgnoreCase("admin")){
+                                    //Toast.makeText(MainActivity.this, "admin", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, AdminHomeActivity.class);
+                                    intent.putExtra("userid", userid);
+                                    MainActivity.this.startActivity(intent);
+                                }
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                 builder.setMessage("Retry")
@@ -90,4 +99,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        /*Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        if (getIntent().getExtras() != null && getIntent().getExtras().getBoolean("EXIT", false)) {
+            finish();
+        }*/
+        finish();
+    }
+
 }

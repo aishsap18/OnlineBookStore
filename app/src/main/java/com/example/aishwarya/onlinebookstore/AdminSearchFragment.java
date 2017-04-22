@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.util.ArrayMap;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,7 +35,7 @@ import java.util.ArrayList;
  * Created by aishwarya on 05-Apr-17.
  */
 
-public class SearchFragment extends Fragment {
+public class AdminSearchFragment extends Fragment {
 
     GridView grid;
     public static final String JSON_ARRAY = "result";
@@ -58,7 +54,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mainView = inflater.inflate(R.layout.search_fragment, container, false);
-        UserHomeActivity.title.setText("Book Store");
+        AdminHomeActivity.title.setText("Book Store");
 
         grid = (GridView) mainView.findViewById(R.id.xCategoryGridView);
 
@@ -101,19 +97,19 @@ public class SearchFragment extends Fragment {
                         }
                     }
 
-                    grid.setAdapter(new SearchFragment.gridAdapter(getContext(),bookName,authorName,price,bookImagePath));
+                    grid.setAdapter(new AdminSearchFragment.gridAdapter(getContext(),bookName,authorName,price,bookImagePath));
 
                     grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            UserHomeActivity.book_id = bookId.get(i);
-                            UserHomeActivity.book_name=bookName.get(i);
-                            UserHomeActivity.author_name=authorName.get(i);
-                            UserHomeActivity.description=description.get(i);
-                            UserHomeActivity.price=price.get(i);
-                            UserHomeActivity.imagePath=bookImagePath.get(i);
+                            AdminHomeActivity.book_id = bookId.get(i);
+                            AdminHomeActivity.book_name=bookName.get(i);
+                            AdminHomeActivity.author_name=authorName.get(i);
+                            AdminHomeActivity.description=description.get(i);
+                            AdminHomeActivity.price=price.get(i);
+                            AdminHomeActivity.imagePath=bookImagePath.get(i);
                             FragmentManager fm = getActivity().getSupportFragmentManager();
-                            fm.beginTransaction().replace(R.id.xUserFrame,new ViewBookFragment()).addToBackStack(null).commit();
+                            fm.beginTransaction().replace(R.id.xUserFrame,new AdminViewBookFragment()).addToBackStack(null).commit();
                         }
                     });
 
@@ -122,7 +118,7 @@ public class SearchFragment extends Fragment {
                 }
             }
         };
-        SearchRequest dataRequest = new SearchRequest(CategoriesFragment.key, responseListener);
+        SearchRequest dataRequest = new SearchRequest(AdminCategoriesFragment.key, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(dataRequest);
 
@@ -141,7 +137,7 @@ public class SearchFragment extends Fragment {
     }
 
     class gridAdapter extends BaseAdapter {
-        ArrayList<SearchFragment.DashboardItem> list;
+        ArrayList<AdminSearchFragment.DashboardItem> list;
         Context context;
         ArrayList<String> bookName = new ArrayList<>();
         ArrayList<String> authorName = new ArrayList<>();
@@ -155,10 +151,10 @@ public class SearchFragment extends Fragment {
             this.price = price;
             this.imagePath = imagePath;
 
-            list = new ArrayList<SearchFragment.DashboardItem>();
+            list = new ArrayList<AdminSearchFragment.DashboardItem>();
 
             for (int i = 0; i < bookName.size() ; i++) {
-                SearchFragment.DashboardItem tempDashboardItem = new SearchFragment.DashboardItem(
+                AdminSearchFragment.DashboardItem tempDashboardItem = new AdminSearchFragment.DashboardItem(
                         bookName.get(i),
                         authorName.get(i),price.get(i));
                 list.add(tempDashboardItem);
@@ -195,7 +191,7 @@ public class SearchFragment extends Fragment {
             }
         }
 
-        SearchFragment.gridAdapter.ViewHolder holder;
+        AdminSearchFragment.gridAdapter.ViewHolder holder;
         @Override
         public View getView(final int i, View view, ViewGroup viewGroup) {
             View row = view;
@@ -203,12 +199,12 @@ public class SearchFragment extends Fragment {
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 row = inflater.inflate(R.layout.single_item, viewGroup, false);
-                holder = new SearchFragment.gridAdapter.ViewHolder(row);
+                holder = new AdminSearchFragment.gridAdapter.ViewHolder(row);
                 row.setTag(holder);
             } else {
-                holder = (SearchFragment.gridAdapter.ViewHolder) row.getTag();
+                holder = (AdminSearchFragment.gridAdapter.ViewHolder) row.getTag();
             }
-            SearchFragment.DashboardItem temp = list.get(i);
+            AdminSearchFragment.DashboardItem temp = list.get(i);
 
             Thread th = new Thread(new Runnable() {
                 @Override

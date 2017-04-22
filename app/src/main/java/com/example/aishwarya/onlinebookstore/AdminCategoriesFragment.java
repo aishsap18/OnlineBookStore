@@ -1,49 +1,35 @@
 package com.example.aishwarya.onlinebookstore;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 import java.util.ArrayList;
 
 /**
  * Created by aishwarya on 02-Apr-17.
  */
 
-public class CategoriesFragment extends Fragment {
+public class AdminCategoriesFragment extends Fragment {
 
     ListView categoryList;
     public static final String JSON_ARRAY = "result";
@@ -64,13 +50,14 @@ public class CategoriesFragment extends Fragment {
     public static ArrayList<DataCategoryWise> history;
     public static ArrayList<DataCategoryWise> howItWorks;
     public static ArrayList<DataCategoryWise> other;
+    public static String[] category = {"Arts","Fiction","History","How It Works","Other"};
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mainView = inflater.inflate(R.layout.categories_fragment, container, false);
-        UserHomeActivity.title.setText("Book Store");
+        AdminHomeActivity.title.setText("Book Store");
 
         categoryList = (ListView)mainView.findViewById(R.id.xCategoryListView);
         searchet=(EditText)mainView.findViewById(R.id.xSearchEditText);
@@ -174,7 +161,6 @@ public class CategoriesFragment extends Fragment {
                         }
                     }
 
-                    String[] category = {"Arts","Fiction","History","How It Works","Other"};
                     categoryList.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,category));
 
                     categoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -182,15 +168,15 @@ public class CategoriesFragment extends Fragment {
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             FragmentManager fm = getActivity().getSupportFragmentManager();
                             if (i==0){
-                                fm.beginTransaction().replace(R.id.xUserFrame,new ArtsFragment()).addToBackStack(null).commit();
+                                fm.beginTransaction().replace(R.id.xUserFrame,new AdminArtsFragment()).addToBackStack(null).commit();
                             } else if (i==1){
-                                fm.beginTransaction().replace(R.id.xUserFrame,new FictionFragment()).addToBackStack(null).commit();
+                                fm.beginTransaction().replace(R.id.xUserFrame,new AdminFictionFragment()).addToBackStack(null).commit();
                             } else if (i==2){
-                                fm.beginTransaction().replace(R.id.xUserFrame,new HistoryFragment()).addToBackStack(null).commit();
+                                fm.beginTransaction().replace(R.id.xUserFrame,new AdminHistoryFragment()).addToBackStack(null).commit();
                             } else if (i==3){
-                                fm.beginTransaction().replace(R.id.xUserFrame,new HowItWorksFragment()).addToBackStack(null).commit();
+                                fm.beginTransaction().replace(R.id.xUserFrame,new AdminHowItWorksFragment()).addToBackStack(null).commit();
                             } else if (i==4){
-                                fm.beginTransaction().replace(R.id.xUserFrame,new OtherFragment()).addToBackStack(null).commit();
+                                fm.beginTransaction().replace(R.id.xUserFrame,new AdminOtherFragment()).addToBackStack(null).commit();
                             }
                         }
                     });
@@ -209,7 +195,7 @@ public class CategoriesFragment extends Fragment {
             public void onClick(View view) {
                 key = searchet.getText().toString();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.xUserFrame,new SearchFragment()).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.xUserFrame,new AdminSearchFragment()).addToBackStack(null).commit();
             }
         });
 
