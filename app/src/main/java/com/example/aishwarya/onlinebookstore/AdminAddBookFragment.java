@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -52,6 +53,7 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
     String BookName,AuthorName,Publication,Description,Category,BookPrice;
     private static final String TAG1 = "FileSelection";
     ArrayList<String> files_paths;
+    int flag = 0;
 
     @Nullable
     @Override
@@ -82,7 +84,7 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
                 String item = adapterView.getItemAtPosition(i).toString();
 
                 // Showing selected spinner item
-                Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                //Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
                 Category = item;
             }
 
@@ -97,13 +99,15 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
         browse_pdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag = 0;
                 showFileChooser();
             }
         });
         browse_pdf_cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFileChooser1();
+                flag = 1;
+                showFileChooser();
             }
         });
         add_book.setOnClickListener(this);
@@ -112,7 +116,6 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
     }
 
     private static final int FILE_SELECT_CODE = 0;
-    private static final int FILE_SELECT_CODE1 = 1;
 
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -123,22 +126,6 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
             startActivityForResult(
                     Intent.createChooser(intent, "Select a File to Upload"),
                     FILE_SELECT_CODE);
-        } catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(getActivity(), "Please install a File Manager.",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void showFileChooser1() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    FILE_SELECT_CODE1);
         } catch (android.content.ActivityNotFoundException ex) {
             // Potentially direct the user to the Market with a Dialog
             Toast.makeText(getActivity(), "Please install a File Manager.",
@@ -201,33 +188,26 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
         switch (requestCode) {
             case FILE_SELECT_CODE:
                 if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    Log.d(TAG, "File Uri: " + uri.toString());
-                    // Get the path
-                    String path = null;
-                    File myFile = new File(uri.getPath());
-                    path = myFile.getAbsolutePath();
-                    Log.d(TAG, "File Path: " + path);
-                    files_paths.add(path);
-                    pdf.setText("PDF : "+files_paths.get(files_paths.size()-1));
-                    // Get the file instance
-                    // File file = new File(path);
-                    // Initiate the upload
-                }
-                break;
-            case FILE_SELECT_CODE1:
-                if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    Log.d(TAG, "File Uri: " + uri.toString());
-                    // Get the path
-                    String path = null;
-                    File myFile = new File(uri.getPath());
-                    path = myFile.getAbsolutePath();
-                    Log.d(TAG, "File Path: " + path);
-                    files_paths.add(path);
-                    cover.setText("PDF Cover : "+files_paths.get(files_paths.size()-1));
+
+                    if (flag == 0) {
+                        // Get the Uri of the selected file
+                        Uri uri = data.getData();
+                        Log.d(TAG, "File Uri: " + uri.toString());
+                        // Get the path
+                        String path = null;
+                        File myFile = new File(uri.getPath());
+                        path = myFile.getAbsolutePath();
+                        Log.d(TAG, "File Path: " + path);
+                        files_paths.add(path);
+                        pdf.setText("PDF : " + files_paths.get(files_paths.size() - 1));
+                    } else {
+                        Uri uri = data.getData();
+                        Log.d(TAG, "File Uri: " + uri.toString());
+                        String path = getPath(uri);
+                        Log.d(TAG, "File Path Cover: " + path);
+                        files_paths.add(path);
+                        cover.setText("PDF Cover : " + files_paths.get(files_paths.size() - 1));
+                    }
                     // Get the file instance
                     // File file = new File(path);
                     // Initiate the upload
@@ -235,6 +215,14 @@ public class AdminAddBookFragment extends Fragment implements View.OnClickListen
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     public void uploadFile(ArrayList<String> imgPaths) {
