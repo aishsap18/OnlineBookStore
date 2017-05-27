@@ -56,7 +56,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimary"
             android:id="@+id/xConfirmButton"
-            android:text="Confirm Order" />
+            android:text="Make Payment" />
 
     </RelativeLayout>
 </FrameLayout>

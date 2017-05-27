@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBase">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Card Number :"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:id="@+id/tv"
+        android:layout_marginTop="170dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/xCardNum"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorWhite"
+        android:padding="10dp"
+        android:layout_below="@+id/tv"
+        android:textSize="20dp"
+        />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:id="@+id/xPayButton"
+            android:layout_below="@+id/xCardNum"
+            android:text="Pay"
+            android:layout_marginTop="10dp"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

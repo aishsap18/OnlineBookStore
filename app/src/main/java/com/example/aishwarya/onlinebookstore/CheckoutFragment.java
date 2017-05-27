@@ -3,6 +3,7 @@ package com.example.aishwarya.onlinebookstore;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,17 +50,8 @@ public class CheckoutFragment extends Fragment {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        CartViewFragment.totalPrice = 0;
-                        Toast.makeText(getActivity(), "Books purchased.", Toast.LENGTH_SHORT).show();
-                    }
-                };
-                String userid = UserHomeActivity.userid + "";
-                ConfirmOrderRequest confirmCartRequest = new ConfirmOrderRequest(userid, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(getActivity());
-                queue.add(confirmCartRequest);
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.xUserFrame,new MakePaymentFragment()).addToBackStack(null).commit();
             }
         });
 
